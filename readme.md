@@ -1,7 +1,7 @@
-# Digirooster API
+# Digirooster API 🎓
 
 ## What is it?
-The Digirooster API is an unofficial api to get information of the Hanze University timeschedules. The current version is not ready for publishing. 
+The Digirooster API is an unofficial api to get information of the Hanze University time schedules.
 
 ## Getting started
 1. Install Python 3.x. During the installation keep the checkbox for "installing pip" checked
@@ -161,3 +161,11 @@ Retrieves the current timetable of a group (resource)
         },
         ...
     }
+    
+## Disclaimer
+This code is specifically for made for educational purposes (for IT students of the  Hanze University ), but I won't stop you from using it for a different purpose. I have no clue if you are allowed to use it, so you might want to contact the Hanze University if you're going to use it for something else.
+
+Are you (an angry) legal counselor of the Hanze University? Please contact me through GitHub.
+
+## Wanna help out?
+Do you want to help make this code better or write a better readme? Clone the repo, check out to different branch (with a descriptive name) and create a pull request 👍
