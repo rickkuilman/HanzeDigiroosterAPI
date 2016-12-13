@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Digirooster API by rickkuilman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Digirooster API</h1>
+      <h2 class="project-tagline">An unofficial API to get information of the Hanze University time schedules</h2>
+      <a href="https://github.com/rickkuilman/DigiroosterAPI" class="btn">View on GitHub</a>
+      <a href="https://github.com/rickkuilman/DigiroosterAPI/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rickkuilman/DigiroosterAPI/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="digirooster-api-" class="anchor" href="#digirooster-api-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Digirooster API <g-emoji alias="mortar_board" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f393.png" ios-version="6.0">🎓</g-emoji>
+</h1>
+
+<h2>
+<a id="what-is-it" class="anchor" href="#what-is-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is it?</h2>
+
+<p>The Digirooster API is an unofficial api to get information of the Hanze University time schedules.</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
+
+<ol>
+<li>Install Python 3.x. During the installation keep the checkbox for "installing pip" checked</li>
+<li>Install requests via pip: <code>pip install requests</code>
+</li>
+<li>Install cherrypy via pip: <code>pip install cherrypy</code>
+</li>
+<li>Copy (and paste) "env_EXAMPLE.py" and change the name of the copy to "env.py". Edit the content of env.py according to your credentials for the Hanze Intranet.</li>
+<li>Run server.py via the commandline <code>python server.py</code>
+</li>
+</ol>
+
+<h1>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h1>
+
+<h2>
+<a id="schools" class="anchor" href="#schools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>schools()</h2>
+
+<pre><code>GET http://127.0.0.1:8080/schools
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
+
+<p>Retrieves all the schools currently available in the digirooster</p>
+
+<h3>
+<a id="response" class="anchor" href="#response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><strong>LongName</strong></td>
+<td align="left">Contains the name of the school</td>
+</tr>
+<tr>
+<td align="right"><strong>ShortName</strong></td>
+<td align="left">Contains the letter code of the school (3 or 4 letter code)</td>
+</tr>
+<tr>
+<td align="right"><strong>ID</strong></td>
+<td align="left">Contains the <code>schoolId</code>, that can be used further on in the API</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h3>
+
+<h4>
+<a id="request" class="anchor" href="#request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Request</h4>
+
+<pre><code>GET /schools HTTP/1.1
+Host: 127.0.0.1:8080
+</code></pre>
+
+<h4>
+<a id="response-1" class="anchor" href="#response-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h4>
+
+<pre><code>[
+  {
+    "LongName": "Academie voor Architectuur, Bouwkunde &amp; Civiele Techniek",
+    "ShortName": "SABC",
+    "ID": "F77859ED31A4449917C761E84E7208B2"
+  },
+  {
+    "LongName": "Academie Minerva",
+    "ShortName": "SABK",
+    "ID": "F77859ED31A4449917C761E84E7208AA"
+  },
+  ...
+]
+</code></pre>
+
+<h2>
+<a id="groups" class="anchor" href="#groups" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>groups()</h2>
+
+<pre><code>GET http://127.0.0.1:8080/groups/_schoolId_/_studyYear_
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="abstract-1" class="anchor" href="#abstract-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
+
+<p>Retrieves all the groups currently available in the digirooster, for a specific school and year</p>
+
+<h3>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><strong>schoolId</strong></td>
+<td align="left">Should contain the <code>schoolId</code> of the group. Can be retrieved via <code>getSchools()</code>
+</td>
+</tr>
+<tr>
+<td align="right"><strong>studyYear</strong></td>
+<td align="left">Should contain the year of the group: (1-4)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="response-2" class="anchor" href="#response-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>resourceId</code></td>
+<td align="left">Contains the (short) name of the group</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h3>
+
+<h4>
+<a id="request-1" class="anchor" href="#request-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Request</h4>
+
+<pre><code>GET /groups/F77859ED31A4449917C761E84E720894/4 HTTP/1.1
+Host: 127.0.0.1:8080
+</code></pre>
+
+<h4>
+<a id="response-3" class="anchor" href="#response-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h4>
+
+<pre><code>{
+    "48E0614F807625FDF612ED87670FB9E9": "BUDK",
+    "99030BAD69623C854AA2CF1AB103A3D3": "BUD4A",
+    "2928A60834C6C958AF19F1C73019593F": "IBV4B",
+    ...
+}
+</code></pre>
+
+<h2>
+<a id="schedule" class="anchor" href="#schedule" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>schedule()</h2>
+
+<pre><code>GET http://127.0.0.1:8080/schedule/_resourceID_
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="abstract-2" class="anchor" href="#abstract-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
+
+<p>Retrieves the current timetable of a group (resource)</p>
+
+<h3>
+<a id="parameters-1" class="anchor" href="#parameters-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><strong>resourceID</strong></td>
+<td align="left">Should contain the <code>resourceID</code> of the group. Can be retrieved via <code>getGroups()</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="response-4" class="anchor" href="#response-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h3>
+
+<table>
+<thead>
+<tr>
+<th align="right">Name</th>
+<th align="left">Description</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>ScheduleId</code></td>
+<td align="left">Contains the id of this schedule</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right"><code>ScheduleStart</code></td>
+<td align="left">Contains a Unix timestamp with the starting date of this schedule</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right"><code>ScheduleEnd</code></td>
+<td align="left">Contains a Unix timestamp with the ending date of this schedule</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right"><code>WeekData</code></td>
+<td align="left">Contains a dict with data of the weeks:</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>WeekStart</code></td>
+<td align="left">Unix timestamp</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>WeekEnd</code></td>
+<td align="left">Unix timestamp</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>WeekNumber</code></td>
+<td align="left">int</td>
+</tr>
+<tr>
+<td align="right"><code>ActivityData</code></td>
+<td align="left">Contains a dict with the activities:</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Staff</code></td>
+<td align="left">
+<code>String</code>, representing teacher</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Location</code></td>
+<td align="left">
+<code>String</code>, representing location</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Left</code></td>
+<td align="left">
+<code>int</code>, unknown property</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>ID</code></td>
+<td align="left">
+<code>int</code>, representing id</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Student</code></td>
+<td align="left">
+<code>String</code>, representing the name of the group(s) taking this class</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Description</code></td>
+<td align="left"><code>String</code></td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Start</code></td>
+<td align="left">
+<code>Unix timestamp</code>, representing starting time of activity</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>End</code></td>
+<td align="left">
+<code>Unix timestamp</code>, representing ending time of activity</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Width</code></td>
+<td align="left">
+<code>int</code>, unknown property</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><code>Week</code></td>
+<td align="left">
+<code>int</code>, representing weeknumber</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="example-2" class="anchor" href="#example-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h3>
+
+<h4>
+<a id="request-2" class="anchor" href="#request-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Request</h4>
+
+<pre><code>GET /schedule/99030BAD69623C854AA2CF1AB103A3C1 HTTP/1.1
+Host: 127.0.0.1:8080
+</code></pre>
+
+<h4>
+<a id="response-5" class="anchor" href="#response-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Response</h4>
+
+<pre><code>{
+  "ScheduleEnd": 1454686200000,
+  "ChangeData": [],
+  "ScheduleId": "99030BAD69623C854AA2CF1AB103A3D0",
+  "ActivityData": [
+    {
+      "Staff": "NIEV",
+      "Location": "EM/E143  C20",
+      "Left": 0,
+      "ID": "155689D466AB57A9D13D5E8E77744EAA",
+      "Student": "BF\ITV4B",
+      "Description": "T4.2 SE/practicum SA/SE",
+      "End": 1447759800000,
+      "Start": 1447752600000,
+      "Width": 100,
+      "Week": 47
+    },
+    ...
+  "ScheduleStart": 1447666200000,
+  "WeekData": [
+    {
+      "WeekEnd": 1448060399999,
+      "WeekStart": 1447628400000,
+      "WeekNumber": 47
+    },
+    ...
+}
+</code></pre>
+
+<h2>
+<a id="disclaimer" class="anchor" href="#disclaimer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Disclaimer</h2>
+
+<p>This code is specifically for made for educational purposes (for IT students of the  Hanze University ), but I won't stop you from using it for a different purpose. I have no clue if you are allowed to use it, so you might want to contact the Hanze University if you're going to use it for something else.</p>
+
+<p>Are you (an angry) legal counselor of the Hanze University? Please contact me through GitHub.</p>
+
+<h2>
+<a id="wanna-help-out" class="anchor" href="#wanna-help-out" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wanna help out?</h2>
+
+<p>Do you want to help make this code better or write a better readme? Clone the repo, check out to different branch (with a descriptive name) and create a pull request <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rickkuilman/DigiroosterAPI">Digirooster API</a> is maintained by <a href="https://github.com/rickkuilman">rickkuilman</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
