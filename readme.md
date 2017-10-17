@@ -167,5 +167,5 @@ This code is specifically for made for educational purposes (for IT students of 
 
 Are you (an angry) legal counselor of the Hanze University? Please contact me through GitHub.
 
-## Wanna help out?
+## Want to help out?
 Do you want to help make this code better or write a better readme? Clone the repo, check out to different branch (with a descriptive name) and create a pull request 👍
