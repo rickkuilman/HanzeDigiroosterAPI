@@ -1,5 +1,5 @@
 # Hanze Digirooster API 🎓
-
+![Python 3.x](https://img.shields.io/badge/python-3.x-blue.svg) ![Has another badge](https://img.shields.io/badge/Has%20another%20badge-yes-green.svg)
 ## What is it?
 The Hanze Digirooster API is an unofficial api to get information of the Hanze University time schedules.
 
